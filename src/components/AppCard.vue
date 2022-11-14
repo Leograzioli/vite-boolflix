@@ -19,7 +19,8 @@ export default {
         <p v-else-if="movieItem.original_language === 'it'"><img src="../assets/tn_it-flag.jpg" alt=""></p>
         <p v-else-if="movieItem.original_language === 'de'"><img src="../assets/tn_gm-flag.jpg" alt=""></p>
         <p v-else>Original Language: {{ movieItem.original_language }}</p>
-        <p>rate:{{ parseInt(movieItem.vote_average / 2) }}</p>
+        <p v-if="movieItem.vote_average > 0">rate: <i v-for="index in 5" v-show=" Math.ceil(movieItem.vote_average / 2) >= index" class="fa-solid fa-star"></i></p>
+        <p v-else>rate: <i class="fa-regular fa-star"></i></p>
         <img :src="'https://image.tmdb.org/t/p/w185' + movieItem.poster_path" alt="">
     </div>
 </template>
