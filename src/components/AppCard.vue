@@ -5,8 +5,7 @@ export default {
         movieItem: Object,
         name: String,
         originalName: String
-    }
-
+    },
 }
 </script>
 

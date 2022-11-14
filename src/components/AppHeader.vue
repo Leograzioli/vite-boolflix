@@ -12,8 +12,8 @@ export default {
 
 <template>
     <div>
-        <input type="text" v-model="store.inputSearch">
-        <button @click="$emit('clickedButton')">vai!</button>
+        <input type="text" @keyup.enter="$emit('clickedButton')" v-model="store.inputSearch">
+        <button @click="$emit('clickedButton')" >vai!</button>
     </div>
 </template>
 

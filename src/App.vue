@@ -1,7 +1,7 @@
 <script>
 import axios from 'axios'
 import { store } from './store'
-import AppSearch from './components/AppSearch.vue'
+import AppHeader from './components/AppHeader.vue'
 import AppMain from './components/AppMain.vue'
 export default {
   data() {
@@ -35,25 +35,28 @@ export default {
           params: seriesParam
         }).then( (resp) => {
           this.store.seriesArray = resp.data.results;
+        }).catch((error) => {
+          console.log(error);
         })
       }
+      this.store.inputSearch = "";
     }
   },
   created() {
     this.getAxiosApi();
   },
   components: {
-    AppSearch,
+    AppHeader,
     AppMain,
   }
 }
 </script>
 
 <template>
-  <AppSearch @clickedButton="getAxiosApi" />
+  <AppHeader @clickedButton="getAxiosApi" />
   <AppMain />
 </template>
 
-<style>
-
+<style lang="scss">
+@use "./styles/general.scss" as *;
 </style>
