@@ -17,7 +17,7 @@ export default {
         </div>
         <div>
             <label class="d-none" for="search-bar">Search movie</label>
-            <input id="search-bar" type="text" @keyup.enter="$emit('clickedButton')" v-model="store.inputSearch">
+            <input id="search-bar" placeholder="type a movie/serie name" type="text" @keyup.enter="$emit('clickedButton')" v-model="store.inputSearch">
             <button @click="$emit('clickedButton')" >vai!</button>
         </div>
     </header>

@@ -12,7 +12,7 @@ export default {
 <template>
     
     <div class="ms_card">
-        <div class="ms_description p-3">
+        <div class="ms_card-description p-3">
             <p>Title: {{ name }}</p>
             <p>Original Title: {{ originalName }}</p>
             <p v-if="movieItem.original_language === 'en' || movieItem.original_language === 'sh'"><img src="../assets/tn_uk-flag.jpg" alt=""></p>
@@ -24,7 +24,7 @@ export default {
             <p>{{movieItem.overview}}</p>
         </div>
 
-        <div class="ms_image">
+        <div class="ms_card-image">
             <img :src="'https://image.tmdb.org/t/p/w342' + movieItem.poster_path" alt="">
         </div>
     </div>
@@ -37,21 +37,20 @@ export default {
     background-color: rgb(27, 27, 27);
     overflow: auto;
 
-    .ms_description {
+    .ms_card-description {
 
         img{
             width: 30px;
         }
     }
-
 }
-.ms_card:hover .ms_description {
+.ms_card:hover .ms_card-description {
     display: block;
 }
-.ms_card:hover .ms_image {
+.ms_card:hover .ms_card-image {
     display: none;
 }
-.ms_description {
+.ms_card-description {
     position: absolute;
     top: 0;
     left: 0;
