@@ -6,6 +6,16 @@ export default {
         name: String,
         originalName: String
     },
+    data () {
+        return {
+            language: ['it', 'en']
+        }
+    },
+    methods: {
+    getImg(url) {
+        return new URL(`../assets/`+ url, import.meta.url).href;
+    }
+    }
 }
 </script>
 
@@ -27,30 +37,26 @@ export default {
                 </li>
 
                 <!-- image country -->
-                <li v-if="movieItem.original_language === 'en' || movieItem.original_language === 'sh'">
+                <li v-if="language.includes(movieItem.original_language)" >
                     <span class="text-style">Original Language:</span>
-                    <img src="../assets/tn_uk-flag.jpg" alt="">
-                </li>
-                <li v-else-if="movieItem.original_language === 'it'">
-                    <span class="text-style">Original Language:</span>
-                    <img src="../assets/tn_it-flag.jpg" alt="">
-                </li>
-                <li v-else-if="movieItem.original_language === 'de'">
-                    <span class="text-style">Original Language:</span>
-                    <img src="../assets/tn_gm-flag.jpg" alt="">
+                    <img :src="getImg(movieItem.original_language + `.jpg`)" alt="">
                 </li>
                 <li v-else>
-                    <span class="text-style">Original Language:</span> 
-                    {{ movieItem.original_language }}
+                    <span class="text-style">Original Language:</span>
+                    {{movieItem.original_language}}                  
                 </li>
-
+                
                 <!-- rate star icon -->
-                <li v-if="movieItem.vote_average > 0">
+                <li>
                     <span class="text-style">Rate:</span>
-                    <i v-for="index in 5" v-show=" Math.ceil(movieItem.vote_average / 2) >= index" class="fa-solid fa-star"></i>
-                </li>
-                <li v-else>
-                    <span class="text-style">Rate:</span><i class="fa-regular fa-star"></i>
+
+                    <!-- to calc how many stars -->
+                    <span v-for="index in (Math.ceil(movieItem.vote_average / 2))">
+                        <i  class="fa-solid fa-star"></i>
+                    </span>
+                    <span v-for="index in (5 - Math.ceil(movieItem.vote_average / 2))">
+                        <i  class="fa-regular fa-star"></i>
+                    </span>
                 </li>
 
                 <!-- Description -->
@@ -112,8 +118,7 @@ export default {
 
     li {
         margin-bottom: 0.5rem;
-    }
-    
+    } 
 }
 
 .ms_card-image {

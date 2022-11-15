@@ -12,14 +12,14 @@ export default {
   methods: {
     getAxiosApi() {
 
-      //movie api
-      const movieParams = {
+      const params = {
         api_key: this.store.apiKey,
         ...this.store.inputSearch !== "" && { query: this.store.inputSearch }
       }
-
+      
+      //movie api
       axios.get(this.store.apiMovieUrl, {
-        params: movieParams
+        params: params
       }).then((resp) => {
         this.store.moviesArray = resp.data.results;
       }).catch((error) => {
@@ -27,12 +27,8 @@ export default {
       })
 
       //serie api
-      const seriesParam = {
-        api_key: this.store.apiKey,
-        ...this.store.inputSearch !== "" && { query: this.store.inputSearch }
-      }
       axios.get(this.store.apiSerieUrl, {
-        params: seriesParam
+        params: params
       }).then((resp) => {
         this.store.seriesArray = resp.data.results;
       }).catch((error) => {
