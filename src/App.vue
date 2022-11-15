@@ -11,34 +11,34 @@ export default {
   },
   methods: {
     getAxiosApi() {
-      if (this.store.inputSearch !== '') {
-        const movieParams = {
-          api_key: this.store.apiKey,
-          ...this.store.inputSearch !== "" && { query: this.store.inputSearch }
-        }
 
-        //movie api
-        axios.get(this.store.apiMovieUrl, {
-          params: movieParams
-        }).then((resp) => {
-          this.store.moviesArray = resp.data.results;
-        }).catch((error) => {
-          console.log(error);
-        })
-
-        //serie api
-        const seriesParam = {
-          api_key: this.store.apiKey,
-          ...this.store.inputSearch !== "" && { query: this.store.inputSearch }
-        }
-        axios.get(this.store.apiSerieUrl, {
-          params: seriesParam
-        }).then( (resp) => {
-          this.store.seriesArray = resp.data.results;
-        }).catch((error) => {
-          console.log(error);
-        })
+      //movie api
+      const movieParams = {
+        api_key: this.store.apiKey,
+        ...this.store.inputSearch !== "" && { query: this.store.inputSearch }
       }
+
+      axios.get(this.store.apiMovieUrl, {
+        params: movieParams
+      }).then((resp) => {
+        this.store.moviesArray = resp.data.results;
+      }).catch((error) => {
+        console.log(error);
+      })
+
+      //serie api
+      const seriesParam = {
+        api_key: this.store.apiKey,
+        ...this.store.inputSearch !== "" && { query: this.store.inputSearch }
+      }
+      axios.get(this.store.apiSerieUrl, {
+        params: seriesParam
+      }).then((resp) => {
+        this.store.seriesArray = resp.data.results;
+      }).catch((error) => {
+        console.log(error);
+      })
+
       this.store.inputSearch = "";
     }
   },
