@@ -42,9 +42,6 @@ export default {
       this.store.inputSearch = "";
     }
   },
-  created() {
-    this.getAxiosApi();
-  },
   components: {
     AppHeader,
     AppMain,

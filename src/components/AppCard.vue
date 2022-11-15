@@ -12,52 +12,52 @@ export default {
 <template>
     <div class="ms_card">
         <div class="ms_card-inner">
-            <div class="ms_card-description p-3">
+            <ul class="ms_card-description p-3">
 
                 <!-- title -->
-                <p>
+                <li>
                     <span class="text-style">Title:</span> 
                     {{ name }}
-                </p>
+                </li>
 
                 <!-- original title -->
-                <p>
+                <li>
                     <span class="text-style">Original Title:</span>
                     {{ originalName }}
-                </p>
+                </li>
 
                 <!-- image country -->
-                <p v-if="movieItem.original_language === 'en' || movieItem.original_language === 'sh'">
+                <li v-if="movieItem.original_language === 'en' || movieItem.original_language === 'sh'">
                     <span class="text-style">Original Language:</span>
                     <img src="../assets/tn_uk-flag.jpg" alt="">
-                </p>
-                <p v-else-if="movieItem.original_language === 'it'">
+                </li>
+                <li v-else-if="movieItem.original_language === 'it'">
                     <span class="text-style">Original Language:</span>
                     <img src="../assets/tn_it-flag.jpg" alt="">
-                </p>
-                <p v-else-if="movieItem.original_language === 'de'">
+                </li>
+                <li v-else-if="movieItem.original_language === 'de'">
                     <span class="text-style">Original Language:</span>
                     <img src="../assets/tn_gm-flag.jpg" alt="">
-                </p>
-                <p v-else>
+                </li>
+                <li v-else>
                     <span class="text-style">Original Language:</span> 
                     {{ movieItem.original_language }}
-                </p>
+                </li>
 
                 <!-- rate star icon -->
-                <p v-if="movieItem.vote_average > 0">
+                <li v-if="movieItem.vote_average > 0">
                     <span class="text-style">Rate:</span>
                     <i v-for="index in 5" v-show=" Math.ceil(movieItem.vote_average / 2) >= index" class="fa-solid fa-star"></i>
-                </p>
-                <p v-else>
+                </li>
+                <li v-else>
                     <span class="text-style">Rate:</span><i class="fa-regular fa-star"></i>
-                </p>
+                </li>
 
                 <!-- Description -->
                 <p>
                     <span class="text-style">Description:</span> {{movieItem.overview}}
                 </p>
-            </div>
+            </ul>
             
             <!-- image film -->
             <div class="ms_card-image">
@@ -108,6 +108,12 @@ export default {
     background-color: rgb(44, 44, 44);
     height: 100%;
     overflow: auto;
+    list-style-type: none;
+
+    li {
+        margin-bottom: 0.5rem;
+    }
+    
 }
 
 .ms_card-image {
