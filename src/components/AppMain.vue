@@ -42,7 +42,7 @@ export default {
             <h2 class="text-white p-2">Series:</h2>
             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 text-white g-3">
 
-                <div class="col" v-for="(item, index) in store.seriesArray" :key="index">
+                <div class="col" v-for="(item, index) in store.seriesArray" :key="index"  v-show="(item.genre_ids).includes(store.optionValue) || store.optionValue === ''">
                     <AppCard :name="item.name" :original-name="item.original_name" :movieItem="item" />
                 </div>
             </div>
