@@ -1,5 +1,6 @@
 <script>
 import AppCard from './AppCard.vue';
+import InitialScreen from './InitialScreen.vue';
 import { store } from '../store'
 export default {
     name: 'AppMain',
@@ -13,6 +14,7 @@ export default {
     },
     components: {
         AppCard,
+        InitialScreen,
     }
 }
 </script>
@@ -41,7 +43,7 @@ export default {
         </div>
 
         <div v-else>
-            <h2 class="no-movies">Search a Title</h2>
+            <InitialScreen />
         </div>
     </main>
 </template>
@@ -50,15 +52,5 @@ export default {
 main {  
     width: 100%;
     height: calc(100vh - 70px);
-}
-
-.no-movies {
-    height: calc(100vh - 70px);
-    background-color: rgb(29, 29, 29);
-    color: white;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 </style>

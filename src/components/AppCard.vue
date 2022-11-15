@@ -51,10 +51,10 @@ export default {
                     <span class="text-style">Rate:</span>
 
                     <!-- to calc how many stars -->
-                    <span v-for="index in (Math.ceil(movieItem.vote_average / 2))">
+                    <span v-for="index in (Math.round(movieItem.vote_average / 2))">
                         <i  class="fa-solid fa-star"></i>
                     </span>
-                    <span v-for="index in (5 - Math.ceil(movieItem.vote_average / 2))">
+                    <span v-for="index in (5 - Math.round(movieItem.vote_average / 2))">
                         <i  class="fa-regular fa-star"></i>
                     </span>
                 </li>

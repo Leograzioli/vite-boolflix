@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     getAxiosApi() {
-
+      this.store.loading = true;
       const params = {
         api_key: this.store.apiKey,
         ...this.store.inputSearch !== "" && { query: this.store.inputSearch }
@@ -33,6 +33,8 @@ export default {
         this.store.seriesArray = resp.data.results;
       }).catch((error) => {
         console.log(error);
+      }).finally(() => {
+        this.store.loading = false;
       })
 
       this.store.inputSearch = "";
