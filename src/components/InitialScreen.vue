@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-    <div  class="initial-screen">
+    <div class="initial-screen">
         <!-- initial status -->
         <h2 v-if="store.loading === false" class="d-flex justify-content-center">Search a title</h2>
 
@@ -30,21 +30,24 @@ export default {
     color: white;
 }
 
-.loading{
+.loading {
     height: 100%;
-    .loader{
+
+    .loader {
         width: 120px;
         height: 120px;
         border-radius: 50%;
-        border-top: 8px solid rgba(255,255,255, 1);
-        border-left: 8px solid rgba(255,255,255, 1);
-        border-right: 8px solid rgba(255,255,255, 0);
-    
+        border-top: 8px solid rgba(255, 255, 255, 1);
+        border-left: 8px solid rgba(255, 255, 255, 1);
+        border-right: 8px solid rgba(255, 255, 255, 0);
+
         animation: spin 0.5s infinite linear;
     }
 }
 
 @keyframes spin {
-    to {transform: rotate(360deg);}
+    to {
+        transform: rotate(360deg);
+    }
 }
 </style>

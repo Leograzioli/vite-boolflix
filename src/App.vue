@@ -9,14 +9,23 @@ export default {
       store,
     }
   },
+  created() {
+    this.getGenreApi()
+  },
   methods: {
+    getGenreApi() {
+      axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=80c08e9879f031f85edabd59d86d5123')
+        .then((resp) => {
+          this.store.genre = resp.data.genres;
+        })
+    },
     getAxiosApi() {
       this.store.loading = true;
       const params = {
         api_key: this.store.apiKey,
         ...this.store.inputSearch !== "" && { query: this.store.inputSearch }
       }
-      
+
       //movie api
       axios.get(this.store.apiMovieUrl, {
         params: params
@@ -36,7 +45,6 @@ export default {
       }).finally(() => {
         this.store.loading = false;
       })
-
       this.store.inputSearch = "";
     }
   },
