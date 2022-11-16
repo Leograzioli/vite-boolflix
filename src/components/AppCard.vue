@@ -78,6 +78,7 @@ export default {
 .ms_card {
     position: relative;
     height: 100%;
+    perspective: 1000px;
 
     .no-img {
         height: 342px;
@@ -95,10 +96,6 @@ export default {
     }
 }
 
-.ms_card:hover .ms_card-description {
-    display: block;
-}
-
 .ms_card:hover .ms_card-inner {
     transform: rotateY(180deg);
 }
@@ -107,7 +104,6 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    display: none;
     transform: rotateY(180deg);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
