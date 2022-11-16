@@ -10,13 +10,22 @@ export default {
     }
   },
   created() {
-    this.getGenreApi()
+
   },
   methods: {
     getGenreApi() {
       axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=80c08e9879f031f85edabd59d86d5123')
         .then((resp) => {
-          this.store.genre = resp.data.genres;
+          for (let i = 0; i < resp.data.genres.length; i++) {
+            const genre = resp.data.genres[i];
+            for (let j = 0; j < this.store.moviesArray.length; j++) {
+              const movie = store.moviesArray[j]
+              if ((movie.genre_ids).includes(genre.id)) {
+                this.store.genre.push(genre)
+                break
+              }
+            }
+          }
         })
     },
 
@@ -33,6 +42,7 @@ export default {
         console.log(error);
       })
     },
+
     getSeries() {
       const params = {
         api_key: this.store.apiKey,
@@ -46,9 +56,10 @@ export default {
         console.log(error);
       }).finally(() => {
         this.store.loading = false;
+        this.getGenreApi()
       })
     },
-    
+
     getAxiosApi() {
       this.store.loading = true;
 
