@@ -6,15 +6,20 @@ export default {
         name: String,
         originalName: String
     },
-    data () {
+    data() {
         return {
             language: ['it', 'en']
         }
     },
     methods: {
-    getImg(url) {
-        return new URL(`../assets/`+ url, import.meta.url).href;
-    }
+        getImg(url) {
+            return new URL(`../assets/` + url, import.meta.url).href;
+        }
+    },
+    computed: {
+        getStar() {
+            return Math.ceil(this.movieItem.vote_average / 2)
+        }
     }
 }
 </script>
@@ -26,7 +31,7 @@ export default {
 
                 <!-- title -->
                 <li>
-                    <span class="text-style">Title:</span> 
+                    <span class="text-style">Title:</span>
                     {{ name }}
                 </li>
 
@@ -37,52 +42,52 @@ export default {
                 </li>
 
                 <!-- image country -->
-                <li v-if="language.includes(movieItem.original_language)" >
+                <li v-if="language.includes(movieItem.original_language)">
                     <span class="text-style">Original Language:</span>
                     <img :src="getImg(movieItem.original_language + `.jpg`)" alt="">
                 </li>
                 <li v-else>
                     <span class="text-style">Original Language:</span>
-                    {{movieItem.original_language}}                  
+                    {{ movieItem.original_language }}
                 </li>
-                
+
                 <!-- rate star icon -->
                 <li>
                     <span class="text-style">Rate:</span>
-
-                    <!-- to calc how many stars -->
-                    <span v-for="index in (Math.round(movieItem.vote_average / 2))">
-                        <i  class="fa-solid fa-star"></i>
-                    </span>
-                    <span v-for="index in (5 - Math.round(movieItem.vote_average / 2))">
-                        <i  class="fa-regular fa-star"></i>
-                    </span>
+                    <i v-for="n in 5" :class="n <= getStar ? 'fa-solid' : 'fa-regular'" class="fa-star"></i>
                 </li>
 
                 <!-- Description -->
                 <p>
-                    <span class="text-style">Description:</span> {{movieItem.overview}}
+                    <span class="text-style">Description:</span> {{ movieItem.overview }}
                 </p>
             </ul>
-            
+
             <!-- image film -->
-            <div class="ms_card-image">
+            <div v-if="movieItem.poster_path" class="ms_card-image">
                 <img :src="'https://image.tmdb.org/t/p/w342' + movieItem.poster_path" alt="">
+            </div>
+            <div class="no-img" v-else>
+                <p>no pic</p>
             </div>
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
-
 .ms_card {
     position: relative;
     height: 100%;
+
     .ms_card-description {
 
-        img{
+        img {
             width: 30px;
         }
+    }
+
+    .no-img {
+        height: 342px;
     }
 }
 
@@ -96,6 +101,7 @@ export default {
         font-size: 1.1rem;
     }
 }
+
 .ms_card:hover .ms_card-description {
     display: block;
 }
@@ -103,13 +109,14 @@ export default {
 .ms_card:hover .ms_card-inner {
     transform: rotateY(180deg);
 }
+
 .ms_card-description {
     position: absolute;
     top: 0;
     left: 0;
     display: none;
     transform: rotateY(180deg);
-    -webkit-backface-visibility: hidden; 
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     background-color: rgb(44, 44, 44);
     height: 100%;
@@ -118,12 +125,11 @@ export default {
 
     li {
         margin-bottom: 0.5rem;
-    } 
+    }
 }
 
 .ms_card-image {
-    -webkit-backface-visibility: hidden; 
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
-
 </style>
