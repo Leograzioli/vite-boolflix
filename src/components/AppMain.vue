@@ -20,12 +20,12 @@ export default {
 </script>
 
 <template>
-    <main>
+    <main class="bg-dark">
         <div v-if="store.moviesArray.length !== 0 || store.seriesArray.length !== 0"
-            class="container-fluid bg-dark p-5">
+            class="container-fluid p-5">
 
             <!-- movie section  -->
-            <h2 class="text-white p-2">Movies:</h2>
+            <h2 class="text-white p-2">Movies</h2>
             <select class="mb-2" name="" v-model="store.optionValue" id="">
                 <option value="">Selec Genre</option>
                 <option v-for="item in store.genre" :value="item.id"> {{ item.name }}</option>
@@ -58,5 +58,6 @@ export default {
 main {
     width: 100%;
     height: calc(100vh - 70px);
+    overflow: auto;
 }
 </style>

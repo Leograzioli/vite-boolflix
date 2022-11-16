@@ -19,14 +19,12 @@ export default {
           this.store.genre = resp.data.genres;
         })
     },
-    getAxiosApi() {
-      this.store.loading = true;
+
+    getMovies() {
       const params = {
         api_key: this.store.apiKey,
         ...this.store.inputSearch !== "" && { query: this.store.inputSearch }
       }
-
-      //movie api
       axios.get(this.store.apiMovieUrl, {
         params: params
       }).then((resp) => {
@@ -34,8 +32,12 @@ export default {
       }).catch((error) => {
         console.log(error);
       })
-
-      //serie api
+    },
+    getSeries() {
+      const params = {
+        api_key: this.store.apiKey,
+        ...this.store.inputSearch !== "" && { query: this.store.inputSearch }
+      }
       axios.get(this.store.apiSerieUrl, {
         params: params
       }).then((resp) => {
@@ -45,6 +47,13 @@ export default {
       }).finally(() => {
         this.store.loading = false;
       })
+    },
+    
+    getAxiosApi() {
+      this.store.loading = true;
+
+      this.getMovies()
+      this.getSeries()
       this.store.inputSearch = "";
     }
   },
