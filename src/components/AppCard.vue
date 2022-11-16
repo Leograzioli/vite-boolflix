@@ -79,13 +79,6 @@ export default {
     position: relative;
     height: 100%;
 
-    .ms_card-description {
-
-        img {
-            width: 30px;
-        }
-    }
-
     .no-img {
         height: 342px;
     }
@@ -125,6 +118,10 @@ export default {
 
     li {
         margin-bottom: 0.5rem;
+    }
+
+    img {
+        width: 30px;
     }
 }
 
