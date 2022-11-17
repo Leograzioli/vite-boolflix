@@ -58,9 +58,9 @@ export default {
                 </li>
 
                 <!-- Description -->
-                <p>
+                <li>
                     <span class="text-style">Description:</span> {{ movieItem.overview }}
-                </p>
+                </li>
             </ul>
 
             <!-- image film -->
