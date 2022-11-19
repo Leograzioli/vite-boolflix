@@ -20,9 +20,8 @@ export default {
             const genre = resp.data.genres[i];
             for (let j = 0; j < this.store.moviesArray.length; j++) {
               const movie = store.moviesArray[j]
-              if ((movie.genre_ids).includes(genre.id)) {
-                this.store.genre.push(genre)
-                break
+              if ((movie.genre_ids).includes(genre.id) && !this.store.genre.find((item) => item.id === genre.id)) {
+                this.store.genre.push(genre);
               }
             }
           }
